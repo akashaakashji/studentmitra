@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   function fetchFiles(category, folderId) {
-    let url = `https://studentmitra-gamma.vercel.app/api/drive/files?category=${category}`;
+    let url = `/api/drive/files?category=${category}`;
     if (folderId) url += `&folderId=${folderId}`;
 
     fetch(url)
@@ -64,4 +64,5 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   }
 });
+
 
