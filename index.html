@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Previous Year Question Papers</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<section class="course-s1">
+  <div class="courseakash1">
+    <h2>Previous Year Question Papers</h2>
+
+    <!-- BRANCH CARDS -->
+    <div class="akash">
+
+      <div class="courseb" onclick="loadCategory('cse')">
+        <h3>Computer Science</h3>
+        <button class="btn">View Papers</button>
+      </div>
+
+      <div class="courseb" onclick="loadCategory('me')">
+        <h3>Mechanical Engineering</h3>
+        <button class="btn">View Papers</button>
+      </div>
+
+      <div class="courseb" onclick="loadCategory('it')">
+        <h3>Information Technology</h3>
+        <button class="btn">View Papers</button>
+      </div>
+
+      <div class="courseb" onclick="loadCategory('ee')">
+        <h3>Electrical Engineering</h3>
+        <button class="btn">View Papers</button>
+      </div>
+
+      <div class="courseb" onclick="loadCategory('ece')">
+        <h3>Electronics Engineering</h3>
+        <button class="btn">View Papers</button>
+      </div>
+
+      <div class="courseb" onclick="loadCategory('ce')">
+        <h3>Civil Engineering</h3>
+        <button class="btn">View Papers</button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FILE / FOLDER VIEW AREA -->
+<section class="viewer">
+  <h3 id="path">📂 Select a branch</h3>
+  <div id="files"></div>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>
