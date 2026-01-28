@@ -12,14 +12,28 @@ function loadCategory(category) {
 
 // Load folder contents
 function fetchFiles(category, folderId) {
-  // ⚠️ APNA VERCEL DOMAIN YAHAN DALO
-  let url = `https://studentmitra-gamma.vercel.app/api/drive/files?category=${category}`;
-  if (folderId) url += `&folderId=${folderId}`;
+  let url = `/api/drive/files?category=${category}`;
+  if (folderId) {
+    url += `&folderId=${folderId}`;
+  }
+
+  console.log("Fetching:", url);
 
   fetch(url)
-    .then(res => res.json())
+    .then(res => {
+      if (!res.ok) {
+        throw new Error("API Error: " + res.status);
+      }
+      return res.json();
+    })
     .then(data => {
       filesDiv.innerHTML = "";
+
+      if (!Array.isArray(data)) {
+        filesDiv.innerHTML = "<p style='color:red'>Error loading files</p>";
+        console.log("API Response:", data);
+        return;
+      }
 
       // BACK BUTTON
       if (historyStack.length > 0) {
@@ -34,11 +48,6 @@ function fetchFiles(category, folderId) {
         filesDiv.appendChild(back);
       }
 
-      if (!Array.isArray(data)) {
-        pathText.innerText = "❌ Error loading files";
-        return;
-      }
-
       data.forEach(file => {
         const card = document.createElement("div");
         card.className = "file-card";
@@ -51,6 +60,7 @@ function fetchFiles(category, folderId) {
             fetchFiles(category, file.id);
           };
         }
+
         // 🖼 Image
         else if (file.mimeType.startsWith("image/")) {
           card.innerHTML = `
@@ -58,7 +68,8 @@ function fetchFiles(category, folderId) {
             <p>${file.name}</p>
           `;
         }
-        // 📄 PDF / Doc / Video
+
+        // 📄 PDF / Docs / Video
         else {
           card.innerHTML = `
             <iframe src="https://drive.google.com/file/d/${file.id}/preview"></iframe>
@@ -71,6 +82,6 @@ function fetchFiles(category, folderId) {
     })
     .catch(err => {
       console.error("Frontend error:", err);
-      pathText.innerText = "❌ Error loading files";
+      filesDiv.innerHTML = "<p style='color:red'>Error loading files</p>";
     });
 }
