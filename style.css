@@ -37,6 +37,7 @@
 }
 
 .viewer {
+  margin-top: 20px;
   padding: 40px;
 }
 
@@ -44,10 +45,12 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 15px;
+  color: black;
 }
 
 .file-card {
   background: #fff;
+  border: 1px solid #ccc;
   padding: 10px;
   border-radius: 8px;
   text-align: center;
@@ -74,4 +77,5 @@
   color: white;
   border: none;
   border-radius: 6px;
+
 }
