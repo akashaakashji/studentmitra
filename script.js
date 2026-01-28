@@ -12,7 +12,7 @@ function loadCategory(category) {
 
 // Load folder contents
 function fetchFiles(category, folderId) {
-  let url = `https://studentmitra-gamma.vercel.app/api/drive/files?category=${category}`;
+  let url = `/api/drive/files?category=${category}`;
   if (folderId) url += `&folderId=${folderId}`;
 
   fetch(url)
@@ -64,6 +64,10 @@ function fetchFiles(category, folderId) {
 
         filesDiv.appendChild(card);
       });
+    })
+    .catch(err => {
+      console.error("Frontend error:", err);
     });
 
 }
+
